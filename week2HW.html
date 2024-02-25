@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>SCC | Shopping Mall</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- <html>
+<head>
+    <script language="JavaScript" src="jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function submitForm()
+        {
+            $("#Form1").submit(function()
+                {
+                    $('.required input').each(function() 
+                        {
+                            if ($(this).val() == '') 
+                                {   
+                                    $(this).addClass('highlight');
+                                }
+                        }
+                    );
+
+                    if ($('.required input').hasClass('highlight')) 
+                        {
+                            alert("Please fill in a Ref Number and try again");
+                            return false;
+                        }
+                }   
+            );
+        }
+    </script>
+</head>
+<body>
+
+    <form method="POST" action="test9.php" name="Form1" ID="Form1">
+        <input TYPE="text" ID="RefNo" NAME="RefNo" VALUE="" size="25px" class="required"></input>
+
+        </br>
+
+        <p>
+            <input type="submit" Name="submit" id="submitButton" value="Report History" onClick='submitForm()'></input>
+        </p>
+    </form> 
+</body> -->
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .item-img {
+            width: 500px;
+            height: 300px;
+
+            background-image: url("https://t1.daumcdn.net/liveboard/nts/5bcccfbd33da4865817b9c606b6b852e.JPG");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .price {
+            font-size: 20px;
+        }
+
+        .exchange {
+            color: blue;
+        }
+
+        .item-desc {
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-order {
+            width: 500px;
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 100px;
+
+            display: block;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        function order() {
+            if ($('#name').val() == "") {
+                alert('Please fill out name');
+            }
+
+            else if ($('#address').val() == "") {
+                alert('Please fill out address');
+            }
+
+            else if ($('#phone').val() == "") {
+                alert('Please fill out phone number');
+            }
+
+            else {
+                alert('Order completed!');
+            }
+        }
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json?base=KRW&code=KRW,USD",
+                data: {},
+                success: function (response) {
+                    let arr = response['1']['rate']
+                    $('#exchange').append(arr)
+                    console.log(arr)
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="item-img"></div>
+        <div class="item-desc">
+            <h1>Sparta Candles <span class="price">Price: $3 each</span></h1>
+            <h4 id="exchange" class="exchange">USD/KRW exchange rate : </h4>
+            <p>These candles actually have special power!</p>
+        </div>
+        <div class="item-order">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Your name</span>
+                </div>
+                <input id="name" type="text" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Quantity</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>-- Please select quantity --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Address</span>
+                </div>
+                <input id="address" type="text" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Phone number</span>
+                </div>
+                <input id="phone" type="text" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <button type="button" onclick="order()" class="btn btn-primary btn-order">Order</button>
+        </div>
+    </div>
+</body>
+
+</html>
